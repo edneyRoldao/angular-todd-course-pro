@@ -19,7 +19,10 @@ import { User } from './auth-form.interface';
           Password
           <input type="password" name="password" ngModel>
         </label>
-        <ng-content select="#btn_id"></ng-content>
+        
+        <!-- select attr allow you inject component as well, the value must be selector name from component -->
+        <ng-content select="[auth-remember]"></ng-content>
+        <ng-content select=".btn_form"></ng-content>
       </form>
     </div>
   `
