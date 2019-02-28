@@ -25,3 +25,10 @@ Angular course - It is an advanced made by Todd Motto
 ### 4-projecting-and-binding-components
 - we can use select attr from ng-content to bind components as well
 - don't forget to register component at module and exports it.
+
+### 5-contentChild-ngAfterContentInit
+- we can get a reference to component that will be injected into ng-content via contentChildDecorator
+    - step 1: we have a condition that will change depending on checked attribute inside another component
+    - step 2: Lets use decorator mentioned before and get the component to be injected
+    - step 3: implements interface AfterContentInit
+    - step 4: implement function ngAfterContentInit
