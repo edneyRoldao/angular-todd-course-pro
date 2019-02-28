@@ -11,11 +11,18 @@ import { User } from './auth-form/auth-form.interface';
           
         <!-- this line will placed inside auth-form component from the same place where ng-template is defined -->
         <h3>Create account</h3>
-          
+ 
+        <button type="submit" id="btn_id">
+            Join US
+        </button>
       </auth-form>
         
       <auth-form (submitted)="loginUser($event)">
         <h3>Login</h3>
+
+        <button type="submit" id="btn_id">
+            Enter
+        </button>
       </auth-form>
         
     </div>
