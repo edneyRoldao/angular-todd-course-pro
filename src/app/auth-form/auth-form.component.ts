@@ -1,7 +1,7 @@
-import {Component, Output, EventEmitter, AfterContentInit, ContentChild} from '@angular/core';
+import {Component, Output, EventEmitter, AfterContentInit, ContentChildren, QueryList} from '@angular/core';
 
 import { User } from './auth-form.interface';
-import {AuthRememberComponent} from './auth-remember.component';
+import { AuthRememberComponent } from './auth-remember.component';
 
 @Component({
     selector: 'auth-form',
@@ -10,7 +10,7 @@ import {AuthRememberComponent} from './auth-remember.component';
             <form (ngSubmit)="onSubmit(form.value)" #form="ngForm">
             
             <!-- we cam add html here externally -->
-            <ng-content></ng-content>
+            <ng-content select="h3"></ng-content>
             
             <label>
                 Email address
@@ -21,7 +21,7 @@ import {AuthRememberComponent} from './auth-remember.component';
                 <input type="password" name="password" ngModel>
             </label>
             
-            <ng-content select="[auth-remember]"></ng-content>
+            <ng-content select="auth-remember"></ng-content>
             
             <!-- step 1 -->
             <div *ngIf="showMessage"> You will be logged in for 30 days </div>            
@@ -37,8 +37,8 @@ export class AuthFormComponent implements AfterContentInit { // step 3
     showMessage: boolean;
 
     // step 2
-    @ContentChild(AuthRememberComponent)
-    rememberComp: AuthRememberComponent;
+    @ContentChildren(AuthRememberComponent)
+    rememberComp: QueryList<AuthRememberComponent>;
 
     @Output()
     submitted: EventEmitter<User> = new EventEmitter<User>();
@@ -50,7 +50,11 @@ export class AuthFormComponent implements AfterContentInit { // step 3
     // step 4
     ngAfterContentInit() {
         if (this.rememberComp) {
-            this.rememberComp.checked.subscribe((data: boolean) => this.showMessage = data);
+
+            this.rememberComp.forEach((item) => {
+                item.checked.subscribe((data: boolean) => this.showMessage = data);
+            });
+
         }
     }
 

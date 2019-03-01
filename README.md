@@ -32,3 +32,6 @@ Angular course - It is an advanced made by Todd Motto
     - step 2: Lets use decorator mentioned before and get the component to be injected
     - step 3: implements interface AfterContentInit
     - step 4: implement function ngAfterContentInit
+    
+### 6-contentChildren-and-queryLists
+- It works similarly at previous branch, but instead of dealing with just one component you can handle an array of components
